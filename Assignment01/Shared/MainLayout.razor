@@ -1,0 +1,86 @@
+﻿@inherits LayoutComponentBase
+
+<MApp>
+    <MAppBar App Height="72" Flat ClippedRight>
+        <MSpacer></MSpacer>
+        <MResponsive MaxWidth="156">
+            <MTextField TValue="string" Dense Flat HideDetails="true" SoloInverted Rounded></MTextField>
+        </MResponsive>
+    </MAppBar>
+    <MNavigationDrawer App Width="300">
+        <MNavigationDrawer Color="grey lighten-3" MiniVariant=true Class="pt-9" Absolute>
+            <MAvatar Color="grey darken-1" Class="d-block mx-auto" Size="36"></MAvatar>
+            <MDivider Class="my-5 mx-3"></MDivider>
+            <MAvatar Color="grey darken-1" Class="d-block mx-auto mb-9" Size=28></MAvatar>
+            <MAvatar Color="grey darken-1" Class="d-block mx-auto mb-9" Size=28></MAvatar>
+            <MAvatar Color="grey darken-1" Class="d-block mx-auto mb-9" Size=28></MAvatar>
+        </MNavigationDrawer>
+        <MSheet Color="grey lighten-5" Height="128" Style="width: 100%;"></MSheet>
+        <MList Shaped Class="pl-14">
+            <MSubheader>REPORTS</MSubheader>
+            <MListItemGroup @bind-Value="_selectedItem"
+                            Color="primary">
+                @foreach (var item in _items)
+                {
+                    <MListItem >
+                        <MListItemIcon>
+                            <MIcon>
+                                @item.Icon
+                            </MIcon>
+                        </MListItemIcon>
+                        <MListItemContent>
+                            <MListItemTitle>@item.Text</MListItemTitle>
+                        </MListItemContent>
+                    </MListItem>
+                }
+            </MListItemGroup>
+        </MList>
+    </MNavigationDrawer>
+    <MNavigationDrawer App Right Clipped>
+        <MListItem>
+            <MListItemContent>
+                <MListItemTitle>Single-line item</MListItemTitle>
+            </MListItemContent>
+        </MListItem>
+
+        <MListItem TwoLine>
+            <MListItemContent>
+                <MListItemTitle>Two-line item</MListItemTitle>
+                <MListItemSubtitle>Secondary text</MListItemSubtitle>
+            </MListItemContent>
+        </MListItem>
+
+        <MListItem ThreeLine>
+            <MListItemContent>
+                <MListItemTitle>Three-line item</MListItemTitle>
+                <MListItemSubtitle>
+                    Secondary line text Lorem ipsum dolor sit amet,
+                </MListItemSubtitle>
+                <MListItemSubtitle>
+                    consectetur adipiscing elit.
+                </MListItemSubtitle>
+            </MListItemContent>
+        </MListItem>
+    </MNavigationDrawer>
+    <MMain>@Body</MMain>
+    <MFooter App Height="72" Inset Color="transparent">
+        <MTextField TValue="string" Solo Rounded Dense Flat BackgroundColor="grey lighten-1" HideDetails="true"></MTextField>
+    </MFooter>
+</MApp>
+
+@code
+{
+    private StringNumber _selectedItem = 1;
+    private Item[] _items = new Item[]
+    {
+       new Item { Text= "Real-Time", Icon= "mdi-clock" },
+       new Item { Text= "Audience", Icon= "mdi-account" },
+       new Item { Text= "Conversions", Icon= "mdi-flag" }
+    };
+
+    class Item
+    {
+        public string Text { get; set; } = string.Empty;
+        public string Icon { get; set; } = string.Empty;
+    }
+}
