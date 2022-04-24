@@ -1,0 +1,293 @@
+﻿@inherits LayoutComponentBase
+
+<MApp>
+    <MAppBar App Dark Height="48" Flat ClippedLeft>
+        <MImage Src="https://cdn.masastack.com/stack/images/logo/MASABlazor/logo-h-en-1.png" MaxWidth="120"></MImage>
+        <MSpacer></MSpacer>
+        <MButton Icon Width="36" Height="36">
+            <MIcon Small>mdi-magnify</MIcon>
+        </MButton>
+        <MButton Icon Width="36" Height="36">
+            <MIcon Small>mdi-help-circle-outline</MIcon>
+        </MButton>
+        <MButton Icon Width="36" Height="36">
+            <MIcon Small>mdi-bell-outline</MIcon>
+        </MButton>
+        <div>
+            <MAvatar Size="24">
+                <MImage Src="https://cdn.masastack.com/stack/images/website/masa-blazor/doddgu.png"></MImage>
+            </MAvatar>
+            <span class="pl-2" style="font-size: 14px;">Dodd Gu</span>
+        </div>
+        <MMenu OpenOnHover Top OffsetY>
+            <ActivatorContent>
+                <MButton @attributes="@context.Attrs">
+                    <MButton Icon Width="36" Height="36">
+                        <MIcon Small>mdi-translate</MIcon>
+                    </MButton>
+                </MButton>
+            </ActivatorContent>
+
+            <ChildContent>
+                <MList Dense>
+                    <MListItemGroup @bind-Value="_selectedItem"
+                                    Color="primary">
+                        @foreach (var item in _items)
+                        {
+                            <MListItem>
+                                <MListItemContent>
+                                    <MListItemTitle>@item.Text</MListItemTitle>
+                                </MListItemContent>
+                            </MListItem>
+                        }
+                    </MListItemGroup>
+                </MList>
+            </ChildContent>
+        </MMenu>
+    </MAppBar>
+    <MNavigationDrawer App Clipped>
+        <Masa.Blazor.Presets.PSidebar @bind-Value="selectedKey"
+                                      Dense
+                                      Color="indigo"
+                                      Items="menus"
+                                      Title="m => m.Label"
+                                      Icon="m => m.Icon"
+                                      Key="m => m.Value"
+                                      Children="m => m.SubMenus"
+                                      TItem="Menu"
+                                      OnClick="Click">
+        </Masa.Blazor.Presets.PSidebar>
+    </MNavigationDrawer>
+    <MMain>
+        <MContainer Fluid Style="background-color: #f0f2f5; height: 100%;" Class="pa-6">
+            <MRow>
+                <MCol Cols="3">
+                    <MCard Flat Class="rounded-0">
+                        <MCardText>
+                            <MRow Class="max-height" NoGutters>
+                                <MCol>
+                                    <span class="text-btn neutral-lighten-4--text">Earnings</span>
+                                    <h5 class="my-1">$9745</h5>
+                                    <span class="text-caption neutral-lighten-2--text">68% more earning than last month.</span>
+                                </MCol>
+                                <MCol Class="block-center">
+                                    <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="1" Option=_earningsChart></MECharts>
+                                </MCol>
+                            </MRow>
+                        </MCardText>
+                    </MCard>
+                </MCol>
+                <MCol Cols="3">
+                    <MCard Flat Class="rounded-0">
+                        <MCardText>
+                            <MRow Class="max-height" NoGutters>
+                                <MCol>
+                                    <span class="text-btn neutral-lighten-4--text">Earnings</span>
+                                    <h5 class="my-1">$9745</h5>
+                                    <span class="text-caption neutral-lighten-2--text">68% more earning than last month.</span>
+                                </MCol>
+                                <MCol Class="block-center">
+                                    <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="1" Option=_earningsChart></MECharts>
+                                </MCol>
+                            </MRow>
+                        </MCardText>
+                    </MCard>
+                </MCol>
+                <MCol Cols="3">
+                    <MCard Flat Class="rounded-0">
+                        <MCardText>
+                            <MRow Class="max-height" NoGutters>
+                                <MCol>
+                                    <span class="text-btn neutral-lighten-4--text">Earnings</span>
+                                    <h5 class="my-1">$9745</h5>
+                                    <span class="text-caption neutral-lighten-2--text">68% more earning than last month.</span>
+                                </MCol>
+                                <MCol Class="block-center">
+                                    <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="1" Option=_earningsChart></MECharts>
+                                </MCol>
+                            </MRow>
+                        </MCardText>
+                    </MCard>
+                </MCol>
+                <MCol Cols="3">
+                    <MCard Flat Class="rounded-0">
+                        <MCardText>
+                            <MRow Class="max-height" NoGutters>
+                                <MCol>
+                                    <span class="text-btn neutral-lighten-4--text">Earnings</span>
+                                    <h5 class="my-1">$9745</h5>
+                                    <span class="text-caption neutral-lighten-2--text">68% more earning than last month.</span>
+                                </MCol>
+                                <MCol Class="block-center">
+                                    <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="1" Option=_earningsChart></MECharts>
+                                </MCol>
+                            </MRow>
+                        </MCardText>
+                    </MCard>
+                </MCol>
+            </MRow>
+            <MRow Class="white mx-0">
+                <MCol>
+                    <MTabs>
+                        <MTab>Item One</MTab>
+                        <MTab>Item Two</MTab>
+                        <MTab>Item Three</MTab>
+                    </MTabs>
+                </MCol>
+                <MCol Md="@("auto")" Align="AlignTypes.Center">
+                    <span>今日</span>
+                    <span>本周</span>
+                    <span>本月</span>
+                    <span>本年</span>
+                </MCol>
+                <MCol Md="@("auto")" Align="AlignTypes.Center">
+                    <MMenu @bind-Value="_menu"
+                           CloseOnContentClick="false"
+                           Transition="scale-transition"
+                           OffsetY
+                           MinWidth="@("auto")">
+                        <ActivatorContent>
+                            <MTextField @bind-Value="_date"
+                                        Label="Birthday date"
+                                        PrependIcon="mdi-calendar"
+                                        Readonly
+                                        @attributes="context.Attrs"></MTextField>
+                        </ActivatorContent>
+                        <ChildContent>
+                            <MDatePicker @bind-Value="_dates" Range></MDatePicker>
+                        </ChildContent>
+                    </MMenu>
+                </MCol>
+            </MRow>
+            <MDivider Style="margin-top: -34px;"></MDivider>
+        </MContainer>
+    </MMain>
+</MApp>
+
+@code {
+    private StringNumber _selectedItem = 1;
+    private Item[] _items = new Item[]
+    {
+       new Item { Text= "测试1", Icon= "mdi-clock" },
+       new Item { Text= "测试2", Icon= "mdi-account" },
+       new Item { Text= "测试3", Icon= "mdi-flag" }
+    };
+
+    class Item
+    {
+        public string Text { get; set; }
+        public string Icon { get; set; }
+    }
+
+    static List<Menu> menus = new()
+    {
+        new Menu() { Label = "Home", Icon = "mdi-home", Value = "Home" },
+        new Menu()
+        {
+            Label = "Users",
+            Icon = "mdi-account-circle",
+            Value = "Users",
+            SubMenus = new List<Menu>()
+            {
+                new()
+                {
+                    Label = "Admin",
+                    SubMenus = new List<Menu>()
+                    {
+                        new() { Label = "Management", Icon = "mdi-account-multiple-outline", Value = "Management" },
+                        new() { Label = "Settings", Icon = "mdi-cog-outline", Value = "Settings" },
+                    }
+                },
+                new()
+                {
+                    Label = "Actions",
+                    SubMenus = new List<Menu>()
+                    {
+                        new() { Label = "Create", Icon = "mdi-plus-outline", Value = "Create" },
+                        new() { Label = "Read", Icon = "mdi-file-outline", Value = "Read" },
+                        new() { Label = "Update", Icon = "mdi-update", Value = "Update" },
+                        new() { Label = "Delete", Icon = "mdi-delete", Value = "Delete" },
+                    }
+                },
+            }
+        },
+    };
+
+    StringNumber selectedKey = "Management";
+
+    void Click(Menu item)
+    {
+        // code with clicked item
+    }
+
+    class Menu
+    {
+        public string Label { get; set; }
+
+        public string Value { get; set; }
+
+        public string Icon { get; set; }
+
+        public List<Menu> SubMenus { get; set; }
+    }
+
+    private object? _earningsChart = new
+    {
+        Tooltip = new
+        {
+            Trigger = "item",
+        },
+        Series = new[]
+        {
+            new
+            {
+                Type= "pie",
+                Radius= "90%",
+                Label=new
+                {
+                    Show=false
+                },
+                Data=new[]
+                {
+                    new
+                    {
+                        value= 53,
+                        Name= "Product",
+                        ItemStyle=new
+                        {
+                            Color= "#4318FF"
+                        }
+                    },
+                    new
+                    {
+                        value= 31,
+                        Name= "App",
+                        ItemStyle=new
+                        {
+                            Color= "#05CD99"
+                        }
+                    },
+                    new
+                    {
+                        value= 16,
+                        Name= "Service",
+                        ItemStyle = new
+                        {
+                            Color= "#FFB547"
+                        }
+                    },
+                }
+            }
+    }
+    };
+
+    private List<DateOnly> _dates = new List<DateOnly>
+        {
+            new DateOnly(2019,9,10),
+            new DateOnly(2019,9,20)
+        };
+
+    private DateOnly _date = DateOnly.FromDateTime(DateTime.Now);
+    private bool _menu;
+
+}
