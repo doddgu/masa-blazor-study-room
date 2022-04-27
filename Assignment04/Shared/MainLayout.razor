@@ -1,0 +1,89 @@
+﻿@inherits LayoutComponentBase
+
+<MApp>
+    <MToolbar MaxHeight="64" Color="primary" Dark>
+        <MAppBarNavIcon @onclick="() => _drawer = !_drawer"></MAppBarNavIcon>
+
+        <MToolbarTitle>Title</MToolbarTitle>
+
+        <MSpacer></MSpacer>
+
+        <MButton Icon>
+            <MIcon>mdi-magnify</MIcon>
+        </MButton>
+
+        <MButton Icon>
+            <MIcon>mdi-heart</MIcon>
+        </MButton>
+
+        <MButton Icon>
+            <MIcon>mdi-dots-vertical</MIcon>
+        </MButton>
+    </MToolbar>
+
+    <MNavigationDrawer @bind-Value="_drawer" Absolute Temporary>
+        <MListItem>
+            <MListItemAvatar>
+                <MImage Src="https://randomuser.me/api/portraits/men/78.jpg"></MImage>
+            </MListItemAvatar>
+
+            <MListItemContent>
+                <MListItemTitle>John Leider</MListItemTitle>
+            </MListItemContent>
+        </MListItem>
+
+        <MDivider></MDivider>
+
+        <MList Dense>
+            @foreach (var item in _items)
+            {
+                <MListItem Link>
+                    <MListItemIcon>
+                        <MIcon>@item.Icon</MIcon>
+                    </MListItemIcon>
+
+                    <MListItemContent>
+                        <MListItemTitle>@item.Title</MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+            }
+        </MList>
+    </MNavigationDrawer>
+
+    <MContainer Fluid Style="height: 100%;">
+        @Body
+    </MContainer>
+
+    <MFooter Color="grey lighten-5">
+        <MRow Justify="JustifyTypes.SpaceAround" NoGutters>
+            <MButton Icon Class="my-auto" Color="primary">
+                <MBadge Color="error" Content="6" OverLap>
+                    <ChildContent>
+                        <MIcon>mdi-chat</MIcon>
+                    </ChildContent>
+                </MBadge>
+            </MButton>
+            <MButton Icon Class="my-auto" Color="primary">
+                <MIcon>mdi-account-details</MIcon>
+            </MButton>
+            <MButton Icon Class="my-auto" Color="primary">
+                <MIcon>mdi-compass</MIcon>
+            </MButton>
+        </MRow>
+    </MFooter>
+</MApp>
+
+@code {
+    private bool _drawer;
+
+    private class ItemDemo
+    {
+        public string Title { get; set; }
+        public string Icon { get; set; }
+    }
+    private List<ItemDemo> _items = new()
+    {
+        new ItemDemo { Title = "Home", Icon = "mdi-view-dashboard" },
+        new ItemDemo { Title = "About", Icon = "mdi-forum" }
+    };
+}
