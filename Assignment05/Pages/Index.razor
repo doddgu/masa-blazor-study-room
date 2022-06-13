@@ -1,0 +1,59 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<MRow>
+    <MCol Class="red">abc</MCol>
+    <MCol Class="red--text">abc</MCol>
+    <MCol Class="red lighten-4">abc</MCol>
+    <MCol Class="red--text text--lighten-4">abc</MCol>
+</MRow>
+
+<MRow>
+    <MCol>
+        <MButton Color="primary" @onclick="() => _reverse = !_reverse">Reverse</MButton>
+
+        <MCard Class="@($"grey lighten-4 d-flex flex-column{(_reverse ? "-reverse" : "" )}")">
+            @for (int i = 0; i < 3; i++)
+            {
+                var num = i;
+                <MCard Class="pa-2" Outlined Tile>
+                    Flex column @num
+                </MCard>
+            }
+        </MCard>
+    </MCol>
+</MRow>
+
+<MRow Class="d-flex flex-row grey lighten-4">
+    <MCol Class="order-2">2</MCol>
+    <MCol Class="order-1">1</MCol>
+    <MCol Class="order-3">3</MCol>
+</MRow>
+
+<MRow Class="d-flex flex-row grey lighten-4">
+    <MCol Class="order-md-2 order-sm-1 col-sm-6 col-md-6">2</MCol>
+    <MCol Class="order-md-1 order-sm-2 col-sm-6 col-md-3">1</MCol>
+    <MCol Class="order-md-3 order-sm-3 col-sm-12 col-md-3">3</MCol>
+</MRow>
+
+<MDivider Class="mt-6"></MDivider>
+<div class="d-inline blue">left</div>
+<div class="d-inline red float-right">right</div>
+
+
+<MDivider Class="mt-6"></MDivider>
+<MRow>
+    <MCol Class="blue" Md="@("auto")">left</MCol>
+    <MSpacer></MSpacer>
+    <MCol Class="red" Md="@("auto")">right</MCol>
+</MRow>
+
+<MRow>
+    <MCol Class="blue">left</MCol>
+    <MCol Class="red" Md="@("auto")">right</MCol>
+</MRow>
+
+@code {
+    bool _reverse = false;
+}
